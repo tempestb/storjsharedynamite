@@ -1,0 +1,26 @@
+﻿#example .demo-container {
+    width: 510px;
+}
+
+.qsf-demo-canvas-overview {
+    width: 480px;
+    min-height: 205px;
+    margin-top: 0;
+    padding: 40px 15px 5px;
+    color: #728ea3;
+    font: 13px "Segoe UI", Arial, Helvetica, sans-serif;
+    background: url(images/rcu-demo-ovreview-background-light.png) no-repeat;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Dark skins */
+.background-black .qsf-demo-canvas,
+.background-blackmetrotouch .qsf-demo-canvas,
+.background-glow .qsf-demo-canvas {
+    background-image: url(images/rcu-demo-ovreview-background-dark.png);
+}
+
+.rcuToolTip {
+    z-index: 2;
+}
