@@ -19,19 +19,30 @@
     <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server">
     </telerik:RadStyleSheetManager>
     <div class="demo-container size-narrow">
+    <div><p>Welcome to StorjshareDynamite.  This will check your log for any connectivity issues.  Note, it is ideal that you stop your node, delete your log, start your node and then wait at least 15 minutes (One hour is better) to check your log.  Old logs may result in incorrect information being displayed regarding issues you've previously corrected.</p></div>
         <div class="qsf-demo-canvas qsf-demo-canvas-overview">
-            <p>Upload your log</p>
-            <telerik:RadCloudUpload ID="RadCloudUpload1" runat="server" RenderMode="Lightweight" OnClientUploadFailed="onClientUploadFailed" OnFileUploaded="RadCloudUpload1_FileUploaded" ProviderType="Azure" MaxFileSize="20971520">
+            <p><b>Upload your log here:</b></p>
+            <telerik:RadCloudUpload ID="RadCloudUpload1" runat="server" RenderMode="Lightweight" OnClientUploadFailed="onClientUploadFailed" OnFileUploaded="RadCloudUpload1_FileUploaded" ProviderType="Azure" MaxFileSize="52428800">
             </telerik:RadCloudUpload>
 
         </div>
         <div><br /><p>Once your upload completes.  Push Process to start checking your log.</p><asp:Button ID="btnProcess" runat="server" Text="Process" /></div>
-        <div><br /><p>Node ID: <asp:Label ID="lblNodeID" runat="server" Text="..."></asp:Label></p></div>
-        <div><br /><p>Delta: <asp:Label ID="lblDelta" runat="server" Text="..."></asp:Label></p></div>
-        <div><br /><p>Status: <asp:Label ID="lblStatus" runat="server" Text="..."></asp:Label></p></div>
-        <div><p>Receiving: <asp:Label ID="lblReceiving" runat="server" Text="..."></asp:Label></p></div>
+        <div><p><br /><b>Node ID:</b> <asp:Label ID="lblNodeID" runat="server" Text=""></asp:Label></p></div>
+        <div><b>Last Seen:</b> <asp:Label ID="lblLastSeen" runat="server" Text=""></asp:Label></div>
+        <div><b>Port:</b> <asp:Label ID="lblPort" runat="server" Text=""></asp:Label></div>
+        <div><b>Address:</b> <asp:Label ID="lblAddress" runat="server" Text=""></asp:Label></div>
+        <div><b>User Agent:</b> <asp:Label ID="lblUserAgent" runat="server" Text=""></asp:Label></div>
+        <div><b>Protocol:</b> <asp:Label ID="lblProtocol" runat="server" Text=""></asp:Label></div>
+        <div><b>Response Time:</b> <asp:Label ID="lblResponseTime" runat="server" Text=""></asp:Label></div>
+        <div><b>Last Timeout:</b> <asp:Label ID="lblLastTimeout" runat="server" Text=""></asp:Label></div>
+        <div><b>Timeout Rate:</b> <asp:Label ID="lblTimeoutRate" runat="server" Text=""></asp:Label></div>
+        <div><asp:Label ID="lblOnline" runat="server" Text=""></asp:Label></div>
+        <div><p><br /><b>Delta:</b> <asp:Label ID="lblDelta" runat="server" Text="..."></asp:Label></p></div>
+        <div><p><b>NTP:</b><asp:Label ID="lblNTP" runat="server" Text=""></asp:Label></p></div>
+        <div><p><b>Status:</b> <asp:Label ID="lblStatus" runat="server" Text="..."></asp:Label></p></div>
+        <div><p><asp:Label ID="lblUPnP" runat="server" Text=""></asp:Label></p></div>
+        <div><p><b>Receiving:</b> <asp:Label ID="lblReceiving" runat="server" Text="..."></asp:Label></p></div>
         <div><asp:Label ID="lblOFFERS" runat="server" Text=""></asp:Label></div>
-
 
     </div>
 
