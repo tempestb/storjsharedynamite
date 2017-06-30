@@ -33,6 +33,8 @@ namespace StorjshareDynamite
 
             string strOriginalFileName = args.FileInfo.OriginalFileName;
             string strFileName = args.FileInfo.KeyName;
+            bool boolReachable = false;
+
             try
             {
                 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("Azure"));
@@ -65,15 +67,19 @@ namespace StorjshareDynamite
   
                             bool boolIsPortOpen = IsPortOpen(lstCONTACT.address, lstCONTACT.port);
 
+
+
                             if (boolIsPortOpen == true)
                             {
                                 lblOnline.ForeColor = System.Drawing.Color.Green;
                                 lblOnline.Text = "Your node is reachable.";
+                                boolReachable = true;
                             }
                             else
                             {
                                 lblOnline.ForeColor = System.Drawing.Color.Red;
                                 lblOnline.Text = "Your node is not reachable.  Your ports may be closed or your RPC Address is incorrect. Configure port forwarding, you can find information <a target='_blank' href='https://docs.google.com/document/d/1Q87QzIn5UwskzdEaU1zoo7URrkl6Na7FYKrR5TeWNdw'>in this document</a> if on the GUI, or you can read <a target='_blank' href='https://docs.google.com/document/d/1D3VJAz_mDbeki8wiErw2000dzltisqHFxfRFEdqYE_8/edit'>this document</a> for help with the command line daemon.";
+                                boolReachable = false;
 
                             }
 
@@ -86,7 +92,17 @@ namespace StorjshareDynamite
                             lblUserAgent.Text = lstCONTACT.userAgent;
                             lblResponseTime.Text = lstCONTACT.responseTime;
 
+                            //if (lstCONTACT.userAgent != "6.4.3")
+                            //{
 
+                            //    lblUserAgent.ForeColor = System.Drawing.Color.Red;
+                            //    lblUserAgent.Text = lstCONTACT.userAgent + " | This is out of date.  Please upgrade.";
+
+                            //}
+                            //else
+                            //{
+                            //    lblProtocol.ForeColor = System.Drawing.Color.Black;
+                            //}
 
                         }
 
@@ -158,8 +174,8 @@ namespace StorjshareDynamite
 
                     if (strLog.LastIndexOf("System clock is not syncronized with NTP") != -1 || strLog.LastIndexOf("Timeout waiting for NTP response") != -1)
                     {
-                        lblNTP.ForeColor = System.Drawing.Color.Red;
-                        lblNTP.Text = " | Your clock is not synced with a time server. If on Windows please download the Time Sync Tool at <a target='_blank' href='http://www.timesynctool.com'>www.timesynctool.com</a>";
+                        lblNTP.ForeColor = System.Drawing.Color.Goldenrod;
+                        lblNTP.Text = "NTP: | Was unable to get a response from your NTP server.  This is ok if your delta is good.  Otherwise, it may be a problem with your clock.";
                     }
                     else
                     {
@@ -188,7 +204,20 @@ namespace StorjshareDynamite
                     if (strLog.LastIndexOf("your address is private and traversal strategies are disabled") != -1)
                     {
                         lblStatus.ForeColor = System.Drawing.Color.Goldenrod;
-                        lblStatus.Text = "Your node is tunneling.  This works, but is not optimal.  Considering forwarding your ports if possible.";
+                        lblStatus.Text = "Your node is tunneling.  This works, but it is not optimal. Consider forwarding your ports if possible.";
+                        if (boolReachable == true)
+                        {
+                            lblStatus.Text = "Your node is tunneling, but your node is reachable. This indicates that your config file is probably misconfigured. doNotTraverseNat should be set to true. Then stop your node, erase your log, start your node, wait 15 minutes and send your log up again to retest.";
+                        }
+                    }
+                    if (strLog.LastIndexOf("requesting tunnelers from neighbor") != -1)
+                    {
+                        lblStatus.ForeColor = System.Drawing.Color.Goldenrod;
+                        lblStatus.Text = "Your node is tunneling.  This works, but it is not optimal. Consider forwarding your ports if possible.";
+                        if (boolReachable == true)
+                        {
+                            lblStatus.Text = "Your node is tunneling, but your node is reachable. This indicates that your config file is probably misconfigured. doNotTraverseNat should be set to true. Then stop your node, erase your log, start your node, wait 15 minutes and send your log up again to retest.";
+                        }
                     }
 
                     var lstPUBLISH = JsonConvert.DeserializeObject<List<publish>>(strLog);

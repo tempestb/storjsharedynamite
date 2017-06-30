@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="StorjshareDynamite._Default" %>
+﻿<%@ Page Title="Storj Share Dynamite" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="StorjshareDynamite._Default" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI.Skins" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
@@ -36,9 +36,9 @@
         <div><b>Response Time:</b> <asp:Label ID="lblResponseTime" runat="server" Text=""></asp:Label></div>
         <div><b>Last Timeout:</b> <asp:Label ID="lblLastTimeout" runat="server" Text=""></asp:Label></div>
         <div><b>Timeout Rate:</b> <asp:Label ID="lblTimeoutRate" runat="server" Text=""></asp:Label></div>
-        <div><asp:Label ID="lblOnline" runat="server" Text=""></asp:Label></div>
+        <div><p><b><asp:Label ID="lblOnline" runat="server" Text=""></asp:Label></b></p></div>
         <div><p><br /><b>Delta:</b> <asp:Label ID="lblDelta" runat="server" Text="..."></asp:Label></p></div>
-        <div><p><b>NTP:</b><asp:Label ID="lblNTP" runat="server" Text=""></asp:Label></p></div>
+        <div><p><b></b><asp:Label ID="lblNTP" runat="server" Text=""></asp:Label></p></div>
         <div><p><b>Status:</b> <asp:Label ID="lblStatus" runat="server" Text="..."></asp:Label></p></div>
         <div><p><asp:Label ID="lblUPnP" runat="server" Text=""></asp:Label></p></div>
         <div><p><b>Receiving:</b> <asp:Label ID="lblReceiving" runat="server" Text="..."></asp:Label></p></div>
