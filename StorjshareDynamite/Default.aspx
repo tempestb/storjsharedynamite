@@ -42,7 +42,12 @@
         <div><p><b>Status:</b> <asp:Label ID="lblStatus" runat="server" Text="..."></asp:Label></p></div>
         <div><p><asp:Label ID="lblUPnP" runat="server" Text=""></asp:Label></p></div>
         <div><p><b>Receiving:</b> <asp:Label ID="lblReceiving" runat="server" Text="..."></asp:Label></p></div>
+        <div><p><asp:Label ID="lblRALLOC" runat="server" Text=""></asp:Label></p></div>
+        <div><p><asp:Label ID="lblSALLOC" runat="server" Text=""></asp:Label></p></div>
+        <div><p><asp:Label ID="lblNOSPACE" runat="server" Text=""></asp:Label></p></div>
+        <div><p><asp:Label ID="lblREAP" runat="server" Text=""></asp:Label></p></div>
         <div><asp:Label ID="lblOFFERS" runat="server" Text=""></asp:Label></div>
+
 
     </div>
 

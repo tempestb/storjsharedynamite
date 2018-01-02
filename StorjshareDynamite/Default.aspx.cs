@@ -108,9 +108,10 @@ namespace StorjshareDynamite
 
                     }
 
-
                     if (strLog.LastIndexOf("delta") != -1)
                     {
+
+
                         string strDelta = strLog.Substring(strLog.LastIndexOf("delta") + 7);
                         string strDeltaResult = strDelta.Substring(0, strDelta.IndexOf("ms"));
                         int intDelta = Convert.ToInt32(strDeltaResult);
@@ -127,49 +128,48 @@ namespace StorjshareDynamite
                             lblDelta.Text = strDeltaResult + " | Good";
                         }
 
-                        // int count = new Regex(Regex.Escape("PUBLISH")).Matches(strDeltaResult).Count;
-                        int count = Regex.Matches(Regex.Escape(strDelta), "PUBLISH").Count;
-                        // int offercount = new Regex(Regex.Escape("OFFER")).Matches(strDeltaResult).Count;
-                        int offercount = Regex.Matches(Regex.Escape(strDelta), "OFFER").Count;
-                        // int validcount = new Regex(Regex.Escape("received valid")).Matches(strDeltaResult).Count;
-                        int validcount = Regex.Matches(Regex.Escape(strDelta), "received valid").Count;
+                        //// int count = new Regex(Regex.Escape("PUBLISH")).Matches(strDeltaResult).Count;
+                        //int count = Regex.Matches(Regex.Escape(strDelta), "PUBLISH").Count;
+                        //// int offercount = new Regex(Regex.Escape("OFFER")).Matches(strDeltaResult).Count;
+                        //int offercount = Regex.Matches(Regex.Escape(strDelta), "OFFER").Count;
+                        //// int validcount = new Regex(Regex.Escape("received valid")).Matches(strDeltaResult).Count;
+                        //int validcount = Regex.Matches(Regex.Escape(strDelta), "received valid").Count;
 
-                        if (count > 0)
-                        {
-                            lblReceiving.ForeColor = System.Drawing.Color.Green;
-                            lblReceiving.Text = " Yes! You have received " + count.ToString() + " storage messages. | Good.";
-                            if (offercount > 0)
-                            {
-                                lblOFFERS.ForeColor = System.Drawing.Color.Green;
-                                lblOFFERS.Text = "You have sent " + offercount.ToString() + " storage offers.  | Good.";
-                            }
-                            else
-                            {
-                                lblOFFERS.Text = "";
-                            }
-                        }
-                        else
-                        {
-                            lblReceiving.ForeColor = System.Drawing.Color.Goldenrod;
-                            if (validcount > 0)
-                            {
-                                lblReceiving.Text = " Yes.  You are receiving responses. However, no requests for storage (PUBLISH) have been received yet. This is normal if your log is less than 1 hour old.";
-                                lblOFFERS.Text = "";
-                            }
-                            else
-                            {
-                                lblReceiving.Text = " No.  If other messages don't show an error, your log may be less than an hour old. Please submit again after 1 hour.";
-                                lblOFFERS.Text = "";
-                            }
-                        }
-
+                        //if (count > 0)
+                        //{
+                        //    lblReceiving.ForeColor = System.Drawing.Color.Green;
+                        //    lblReceiving.Text = " Yes! You have received " + count.ToString() + " storage messages. | Good.";
+                        //    if (offercount > 0)
+                        //    {
+                        //        lblOFFERS.ForeColor = System.Drawing.Color.Green;
+                        //        lblOFFERS.Text = "You have sent " + offercount.ToString() + " storage offers.  | Good.";
+                        //    }
+                        //    else
+                        //    {
+                        //        lblOFFERS.Text = "";
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    lblReceiving.ForeColor = System.Drawing.Color.Goldenrod;
+                        //    if (validcount > 0)
+                        //    {
+                        //        lblReceiving.Text = " Yes.  You are receiving responses. However, no requests for storage (PUBLISH) have been received yet. This is normal if your log is less than 1 hour old.";
+                        //        lblOFFERS.Text = "";
+                        //    }
+                        //    else
+                        //    {
+                        //        lblReceiving.Text = " No.  If other messages don't show an error, your log may be less than an hour old. Please submit again after 1 hour.";
+                        //        lblOFFERS.Text = "";
+                        //    }
+                        //}
 
 
                     }
                     else
                     {
-                        lblDelta.ForeColor = System.Drawing.Color.Red;
-                        lblDelta.Text = " | Cannot find your delta in the log.  Please stop Storj Share.  Erase your log.  Start Storj Share.  Wait 1 hour and then upload your log again.";
+                        lblDelta.ForeColor = System.Drawing.Color.Goldenrod;
+                        lblDelta.Text = " | Cannot find your delta in the log.  ";
                     }
 
                     if (strLog.LastIndexOf("System clock is not syncronized with NTP") != -1 || strLog.LastIndexOf("Timeout waiting for NTP response") != -1)
@@ -219,6 +219,44 @@ namespace StorjshareDynamite
                             lblStatus.Text = "Your node is tunneling, but your node is reachable. This indicates that your config file is probably misconfigured. doNotTraverseNat should be set to true. Then stop your node, erase your log, start your node, wait 15 minutes and send your log up again to retest.";
                         }
                     }
+
+                    int count = Regex.Matches(Regex.Escape(strLog), "handling alloc request").Count;
+                    if (count > 0)
+                    {
+                        lblRALLOC.ForeColor = System.Drawing.Color.Green;
+                        lblRALLOC.Text = "You have received " + count.ToString() + " alloc requests.  | Good.";
+                    }
+                    else
+                    {
+                        lblRALLOC.ForeColor = System.Drawing.Color.Goldenrod;
+                        lblRALLOC.Text = "You have not received any alloc requests.  | If your node is new this may be normal. If older than 1 hour, it may be an issue.";
+                    }
+
+                    int intSCount = Regex.Matches(Regex.Escape(strLog), "Sending alloc response").Count;
+                    if (intSCount > 0)
+                    {
+                        lblSALLOC.ForeColor = System.Drawing.Color.Green;
+                        lblSALLOC.Text = "You have sent " + intSCount.ToString() + " alloc requests.  | Good.";
+                    }
+                    else
+                    {
+                        lblSALLOC.ForeColor = System.Drawing.Color.Goldenrod;
+                        lblSALLOC.Text = "You have not sent any alloc requests.  | If you have not received any allocs, or your node is out of space, this is normal.";
+                    }
+
+                    int intREAPCount = Regex.Matches(Regex.Escape(strLog), "destroying shard").Count;
+                    if (intREAPCount > 0)
+                    {
+                        lblREAP.ForeColor = System.Drawing.Color.Green;
+                        lblREAP.Text = intREAPCount.ToString() + " shards have been reaped. (Removed)";
+                    }
+                    else
+                    {
+                        lblREAP.ForeColor = System.Drawing.Color.Green;
+                        lblREAP.Text = "No shards have been reaped. (Removed)";
+                    }
+
+
 
                     var lstPUBLISH = JsonConvert.DeserializeObject<List<publish>>(strLog);
                     // var StorjFrame = JsonConvert.DeserializeObject<List<StorjFrame>>(response2);

@@ -193,6 +193,42 @@ namespace StorjshareDynamite {
         protected global::System.Web.UI.WebControls.Label lblReceiving;
         
         /// <summary>
+        /// lblRALLOC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRALLOC;
+        
+        /// <summary>
+        /// lblSALLOC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSALLOC;
+        
+        /// <summary>
+        /// lblNOSPACE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNOSPACE;
+        
+        /// <summary>
+        /// lblREAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblREAP;
+        
+        /// <summary>
         /// lblOFFERS control.
         /// </summary>
         /// <remarks>
